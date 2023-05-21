@@ -3,6 +3,7 @@ import Header from "./Header";
 import Countries from "./Countries";
 import RegionContext from "./context/RegionContext";
 import CountryContext from "./context/CountryContext";
+import AppStyle from "./css/App.module.css"
 
 const App = () => {
   const [paises, setPaises] = useState([]);
@@ -30,19 +31,21 @@ const App = () => {
   return (
     <>
       <Header />
-      {content == null || String(content).length < 3 ? (
-        paises.map(function (element) {
-          return <Countries countrySel={element} />;
-        })
-      ) : (
-        <Countries
-          countrySel={paises.find(function (pais) {
-            return String(pais)
-              .toLowerCase()
-              .includes(String(content).toLowerCase());
-          })}
-        />
-      )}
+      <section className={AppStyle.countries}>
+        {content == null || String(content).length < 3 ? (
+          paises.map(function (element) {
+            return <Countries countrySel={element} />;
+          })
+        ) : (
+          <Countries
+            countrySel={paises.find(function (pais) {
+              return String(pais)
+                .toLowerCase()
+                .includes(String(content).toLowerCase());
+            })}
+          />
+        )}
+      </section>
     </>
   );
 };
