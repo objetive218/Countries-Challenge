@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import CountryContext from "./context/CountryContext";
+import counStyle from "./css/Countries.module.css";
 
 const Countries = ({ countrySel }) => {
   const { content } = useContext(CountryContext);
@@ -22,11 +23,21 @@ const Countries = ({ countrySel }) => {
 
   return (
     <>
-      <img src={actualizar?.flags?.svg} alt="flag" />
-      <h2>{countrySel}</h2>
-      <p>Population:{actualizar?.population}</p>
-      <p>Region:{actualizar?.region}</p>
-      <p>Capital:{actualizar?.capital}</p>
+      <article className={counStyle.country}>
+        <picture className={counStyle.cont}>
+          <img
+            className={counStyle.image}
+            src={actualizar?.flags?.svg}
+            alt="flag"
+          />
+        </picture>
+        <section className={counStyle.info}>
+          <h2>{countrySel}</h2>
+          <p>Population:{actualizar?.population}</p>
+          <p>Region:{actualizar?.region}</p>
+          <p>Capital:{actualizar?.capital}</p>
+        </section>
+      </article>
     </>
   );
 };
