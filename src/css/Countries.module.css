@@ -1,7 +1,7 @@
 .country {
   display: flex;
   flex-direction: column;
-  width: 17rem;
+  width: 21rem;
   height: 20rem;
   margin: 3rem;
   position: relative;
@@ -14,6 +14,6 @@
   gap: 0.2rem;
 }
 .image {
-  width: 18rem;
-  height: 9rem;
+  width: 22rem;
+  height: 11rem;
 }
