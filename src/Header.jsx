@@ -44,7 +44,7 @@ const Header = () => {
             <option value="Africa">Africa</option>
             <option value="America">America</option>
             <option value="Asia">Asia</option>
-            <option value="Europa">Europa</option>
+            <option value="Europ">Europa</option>
             <option value="Oceania">Oceania</option>
           </select>
         </label>
