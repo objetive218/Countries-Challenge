@@ -24,13 +24,11 @@ const Countries = ({ countrySel }) => {
   return (
     <>
       <article className={counStyle.country}>
-        <picture className={counStyle.cont}>
-          <img
-            className={counStyle.image}
-            src={actualizar?.flags?.svg}
-            alt="flag"
-          />
-        </picture>
+        <img
+          className={counStyle.image}
+          src={actualizar?.flags?.svg}
+          alt="flag"
+        />
         <section className={counStyle.info}>
           <h2>{countrySel}</h2>
           <p>Population:{actualizar?.population}</p>
