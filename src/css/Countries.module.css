@@ -5,6 +5,7 @@
   height: 18rem;
   margin: 1rem;
   position: relative;
+  background-color: beige;
 }
 .info {
   display: flex;
