@@ -3,13 +3,15 @@ import Header from "./Header";
 import Countries from "./Countries";
 import RegionContext from "./context/RegionContext";
 import CountryContext from "./context/CountryContext";
-import AppStyle from "./css/App.module.css"
+
+import AppStyle from "./css/App.module.css";
 
 const App = () => {
   const [paises, setPaises] = useState([]);
-  const [consult, setConsult] = useState(false);
+  const [test, setTest] = useState([]);
   const { content } = useContext(CountryContext);
   const { region, setRegion } = useContext(RegionContext);
+
   const dates = async function () {
     const consult = await fetch(
       `https://restcountries.com/v3.1/region/${region}`
@@ -21,11 +23,27 @@ const App = () => {
       })
     );
   };
+  const globalDate = async function () {
+    const consult1 = await fetch(`https://restcountries.com/v3.1/all`);
+    const globalRespont = await consult1.json();
+    setTest(
+      globalRespont.map(function (countrySel) {
+        return countrySel.name.common;
+      })
+    );
+  };
+
   useEffect(
     function () {
       dates();
     },
     [region]
+  );
+  useEffect(
+    function () {
+      globalDate();
+    },
+    [test]
   );
 
   return (
@@ -38,7 +56,7 @@ const App = () => {
           })
         ) : (
           <Countries
-            countrySel={paises.find(function (pais) {
+            countrySel={test.find(function (pais) {
               return String(pais)
                 .toLowerCase()
                 .includes(String(content).toLowerCase());
