@@ -5,8 +5,8 @@ import HeaderStyle from "./css/Header.module.css";
 import { BsSearch } from "react-icons/bs";
 
 const Header = () => {
-  const { content, setContent } = useContext(CountryContext);
-  const { region, setRegion } = useContext(RegionContext);
+  const {  setContent } = useContext(CountryContext);
+  const {  setRegion } = useContext(RegionContext);
   const [intro, setIntro] = useState(null);
   const search1 = function (e) {
     e.preventDefault();
@@ -38,7 +38,7 @@ const Header = () => {
         </form>
         <label htmlFor="" className={HeaderStyle.region}>
           <select name="region" id="selregion" onChange={search1}>
-            <option value="" disabled selected hidden>
+            <option value="" defaultValue hidden>
               Filter by Region
             </option>
             <option value="Africa">Africa</option>
