@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import Countries from "./Countries";
 import RegionContext from "./context/RegionContext";
@@ -12,33 +12,46 @@ const App = () => {
   const { content } = useContext(CountryContext);
   const { region, setRegion } = useContext(RegionContext);
 
-  const dates = async function () {
-    const consult = await fetch(
-      `https://restcountries.com/v3.1/region/${region}`
-    );
-    const respont = await consult.json();
-    setPaises(
-      respont.map(function (countrySel) {
-        return countrySel.name.common;
+  const dates = () =>
+    fetch(`https://restcountries.com/v3.1/region/${region}`)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error("Something went wrong");
       })
-    );
-  };
-  const globalDate = async function () {
-    const consult1 = await fetch(`https://restcountries.com/v3.1/all`);
-    const globalRespont = await consult1.json();
-    setTest(
-      globalRespont.map(function (countrySel) {
-        return countrySel.name.common;
-      })
-    );
-  };
+      .then((res) =>
+        setPaises(
+          res.map(function (countrySel) {
+            return countrySel.name.common;
+          })
+        )
+      )
+      .catch((error) => {
+        console.log(error);
+      });
 
-  useEffect(
-    function () {
-      dates();
-    },
-    [region]
-  );
+  const globalDate = () =>
+    fetch(`https://restcountries.com/v3.1/all`)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error("Something went wrong");
+      })
+      .then((res) =>
+        setTest(
+          res.map(function (countrySel) {
+            return countrySel.name.common;
+          })
+        )
+      )
+      .catch((error) => {
+        console.log(error);
+      });
+
+  const prueba = useRef(dates());
+
   useEffect(
     function () {
       globalDate();
