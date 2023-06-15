@@ -1,0 +1,21 @@
+/*const dates = async function () {
+  const consult = await fetch(
+    `https://restcountries.com/v3.1/region/${region}`
+  );
+  const respont = await consult.json();
+  setPaises(
+    respont.map(function (countrySel) {
+      return countrySel.name.common;
+    })
+  );
+};
+  const globalDate = () => fetch(`https://restcountries.com/v3.1/all`).then(res => res.json()).then(res => setTest(
+    res.map(function (countrySel) {
+      return countrySel.name.common;
+    })
+  )).catch(error => {console.log(error)})
+    const dates = () => fetch(`https://restcountries.com/v3.1/region/${region}`).then(res => res.json()).then(res => setPaises(
+    res.map(function (countrySel) {
+      return countrySel.name.common;
+    })
+  )).catch(error => {console.log(error)})
