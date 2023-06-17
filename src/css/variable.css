@@ -18,4 +18,10 @@
     res.map(function (countrySel) {
       return countrySel.name.common;
     })
-  )).catch(error => {console.log(error)})
+  )).catch(error => {console.log(error)})*/
+  :root{
+  --Background: #ffff;
+}
+[data-theme = 'dark']{
+  --Background: #000;
+}
