@@ -7,9 +7,8 @@ import AppStyle from "./css/App.module.css";
 
 const App = () => {
   const [paises, setPaises] = useState([]);
-
   const { content } = useContext(CountryContext);
-  const { region, test } = useContext(RegionContext);
+  const { region, global } = useContext(RegionContext);
 
   const dates = () => {
     region != ""
@@ -64,7 +63,7 @@ const App = () => {
           })
         ) : (
           <Countries
-            countrySel={test.find(function (pais) {
+            countrySel={global.find(function (pais) {
               return String(pais)
                 .toLowerCase()
                 .includes(String(content).toLowerCase());
