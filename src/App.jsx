@@ -57,7 +57,7 @@ const App = () => {
       <section className={AppStyle.countries}>
         {content == null || String(content).length < 3 ? (
           paises.map(function (element, index) {
-            if (index < 20) {
+            if (index < 60) {
               return <Countries key={index} countrySel={element} />;
             }
           })
