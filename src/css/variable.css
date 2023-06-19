@@ -19,9 +19,9 @@
       return countrySel.name.common;
     })
   )).catch(error => {console.log(error)})*/
-  :root{
+.light-mode {
   --Background: #ffff;
 }
-[data-theme = 'dark']{
-  --Background: #000;
+.dark-mode {
+  --Background: black;
 }
