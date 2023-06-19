@@ -1,3 +1,5 @@
+@import "../css/variable.css";
+
 .head{
   display: flex;
   width: 100vw;
@@ -23,7 +25,7 @@
   width: 15rem;
   height: 3rem;
   border: none ;
-  background-color: white;
+  background-color: var(--Background);
   align-items: center;
   gap: 1rem;
   

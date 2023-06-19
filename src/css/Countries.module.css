@@ -5,7 +5,7 @@
   width: 20rem;
   height: 20rem;
   margin: 3rem;
-  background-color: hsl(0, 0%, 100%);
+  background-color: var(--Background);
 }
 .info {
   display: flex;
