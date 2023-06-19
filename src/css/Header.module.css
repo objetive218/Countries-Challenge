@@ -33,6 +33,11 @@
 }
 .theme{
   color: var(--font-color);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 0.8rem;
+  cursor: pointer;
 }
 .search::placeholder{
   color: hsl(0, 0%, 52%);
