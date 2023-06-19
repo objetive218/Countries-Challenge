@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import CountryContext from "./context/CountryContext";
 import RegionContext from "./context/RegionContext";
 import HeaderStyle from "./css/Header.module.css";
-import { BsSearch } from "react-icons/bs";
+import { BsSearch , BsFillMoonFill} from "react-icons/bs";
 import ThemeContext from "./context/ThemeContext";
 
 const Header = () => {
@@ -25,6 +25,7 @@ const Header = () => {
         <h2>Where in the world?</h2>
         <form action="#" >
         <label htmlFor="#" onClick={toggleTheme}>
+        <BsFillMoonFill className={HeaderStyle.theme}/>
           <button >
             <span>Dark Mode</span>
           </button>

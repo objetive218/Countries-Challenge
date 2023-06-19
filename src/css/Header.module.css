@@ -25,10 +25,14 @@
   width: 15rem;
   height: 3rem;
   border: none ;
+  color: var(--font-color);
   background-color: var(--Background);
   align-items: center;
   gap: 1rem;
   
+}
+.theme{
+  color: var(--font-color);
 }
 .search::placeholder{
   color: hsl(0, 0%, 52%);
