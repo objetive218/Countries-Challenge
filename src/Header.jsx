@@ -3,10 +3,12 @@ import CountryContext from "./context/CountryContext";
 import RegionContext from "./context/RegionContext";
 import HeaderStyle from "./css/Header.module.css";
 import { BsSearch } from "react-icons/bs";
+import ThemeContext from "./context/ThemeContext";
 
 const Header = () => {
   const {  setContent } = useContext(CountryContext);
   const {  setRegion } = useContext(RegionContext);
+  const {theme, toggleTheme} = useContext(ThemeContext);
   const [intro, setIntro] = useState(null);
   const search1 = function (e) {
     e.preventDefault();
@@ -21,11 +23,13 @@ const Header = () => {
     <>
       <section className={HeaderStyle.head}>
         <h2>Where in the world?</h2>
-        <label htmlFor="#">
-          <button>
+        <form action="#" >
+        <label htmlFor="#" onClick={toggleTheme}>
+          <button >
             <span>Dark Mode</span>
           </button>
         </label>
+        </form>
       </section>
       <section className={HeaderStyle.bar}>
         <form className={HeaderStyle.search}>
