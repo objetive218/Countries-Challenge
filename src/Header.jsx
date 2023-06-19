@@ -2,13 +2,13 @@ import React, { useState, useContext } from "react";
 import CountryContext from "./context/CountryContext";
 import RegionContext from "./context/RegionContext";
 import HeaderStyle from "./css/Header.module.css";
-import { BsSearch , BsFillMoonFill} from "react-icons/bs";
+import { BsSearch, BsFillMoonFill } from "react-icons/bs";
 import ThemeContext from "./context/ThemeContext";
 
 const Header = () => {
-  const {  setContent } = useContext(CountryContext);
-  const {  setRegion } = useContext(RegionContext);
-  const {theme, toggleTheme} = useContext(ThemeContext);
+  const { setContent } = useContext(CountryContext);
+  const { setRegion } = useContext(RegionContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const [intro, setIntro] = useState(null);
   const search1 = function (e) {
     e.preventDefault();
@@ -23,13 +23,9 @@ const Header = () => {
     <>
       <section className={HeaderStyle.head}>
         <h2>Where in the world?</h2>
-        <form action="#" >
-        <label htmlFor="#" onClick={toggleTheme}>
-        <BsFillMoonFill className={HeaderStyle.theme}/>
-          <button >
-            <span>Dark Mode</span>
-          </button>
-        </label>
+        <form action="#" className={HeaderStyle.theme} onClick={toggleTheme}>
+            <BsFillMoonFill />
+            <h4>Dark Mode</h4>
         </form>
       </section>
       <section className={HeaderStyle.bar}>
