@@ -17,6 +17,7 @@
   flex-wrap: wrap;
   align-content: center;
   justify-content: space-between;
+  color: var(--input);
   padding: 2rem;
 }
 .search{
@@ -25,22 +26,32 @@
   width: 15rem;
   height: 3rem;
   border: none ;
-  color: var(--font-color);
-  background-color: var(--Background);
+  color: var(--input);
+  background-color: var(--elements);
   align-items: center;
   gap: 1rem;
-  
+  padding: 1rem;
+}
+.box{
+  color: var(--input);
 }
 .theme{
   color: var(--font-color);
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   gap: 0.8rem;
   cursor: pointer;
+  margin-right: 2rem;
 }
 .search::placeholder{
-  color: hsl(0, 0%, 52%);
+  color: var(--input);
+  background-color: var(--Background);
+}
+::-webkit-input-placeholder { 
+  background: var(--elements);
 }
 .region{
   display: flex;
@@ -48,7 +59,25 @@
   width: 10rem;
   height: 3rem;
   border: none ;
-  background-color: white;
+  box-sizing: unset;
+  background-color: var(--elements);
+  color: var(--input);
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  margin-right: 2rem;
+  overflow: hidden;
+}
+
+.selregion{
+  display: flex;
+  border: none;
+  width: 9rem;
+  height: 3rem;
+  padding-left: 0.7rem;
+  gap: 1rem;
+  background-color: var(--elements);
+  color: var(--font-color);
+}
+.option{
+  line-height: 3rem;
 }

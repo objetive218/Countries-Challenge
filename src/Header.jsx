@@ -24,29 +24,31 @@ const Header = () => {
       <section className={HeaderStyle.head}>
         <h2>Where in the world?</h2>
         <form action="#" className={HeaderStyle.theme} onClick={toggleTheme}>
-            <BsFillMoonFill />
-            <h4>Dark Mode</h4>
+          <BsFillMoonFill />
+          <h4>Dark Mode</h4>
         </form>
       </section>
       <section className={HeaderStyle.bar}>
-        <form className={HeaderStyle.search}>
-          <BsSearch />
-          <input
-            type="text"
-            placeholder="Search for a country"
-            onChange={search}
-          />
-        </form>
+        <section className={HeaderStyle.box}>
+          <form className={HeaderStyle.search}>
+            <BsSearch />
+            <input
+              type="text"
+              placeholder="Search for a country"
+              onChange={search}
+            />
+          </form>
+        </section>
         <label htmlFor="" className={HeaderStyle.region}>
-          <select name="region" id="selregion" onChange={search1}>
+          <select name="region" id="selregion" onChange={search1} className={HeaderStyle.selregion}>
             <option value="" defaultValue hidden>
               Filter by Region
             </option>
-            <option value="Africa">Africa</option>
-            <option value="America">America</option>
-            <option value="Asia">Asia</option>
-            <option value="Europ">Europa</option>
-            <option value="Oceania">Oceania</option>
+            <option value="Africa" className={HeaderStyle.option}>Africa</option>
+            <option value="America" className={HeaderStyle.option}>America</option>
+            <option value="Asia" className={HeaderStyle.option}>Asia</option>
+            <option value="Europ" className={HeaderStyle.option}>Europa</option>
+            <option value="Oceania" className={HeaderStyle.option}>Oceania</option>
           </select>
         </label>
       </section>
