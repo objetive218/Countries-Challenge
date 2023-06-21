@@ -34,9 +34,9 @@ const Countries = ({ countrySel }) => {
           </picture>
         <section className={counStyle.info}>
           <h2>{countrySel}</h2>
-          <p>Population:{actualizar?.population}</p>
-          <p>Region:{actualizar?.region}</p>
-          <p>Capital:{actualizar?.capital}</p>
+          <p>Population: {actualizar?.population}</p>
+          <p>Region: {actualizar?.region}</p>
+          <p>Capital: {actualizar?.capital ? actualizar?.capital : countrySel}</p>
         </section>
       </article>
     </>
