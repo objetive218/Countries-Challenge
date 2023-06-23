@@ -49,7 +49,7 @@ const App = () => {
   };
   useEffect(() => {
     dates();
-  }, [region]);
+  }, [region,one]);
 
   const countSet = function(){
     if(content == null || String(content).length < 3){
