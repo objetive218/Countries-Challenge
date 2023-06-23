@@ -3,7 +3,7 @@ import CountryContext from "./context/CountryContext";
 import counStyle from "./css/Countries.module.css";
 
 const Countries = ({ countrySel }) => {
-  const { content } = useContext(CountryContext);
+  const { content, one, setOne } = useContext(CountryContext);
   const [actualizar, setActualizar] = useState(null);
 
   const dates = async function () {
@@ -23,7 +23,7 @@ const Countries = ({ countrySel }) => {
 
   return (
     <>
-      <article className={counStyle.country}>
+      <article className={counStyle.country} onClick={(e) => {setOne(countrySel) }}>
         <picture className={counStyle.test}>
 
         <img
