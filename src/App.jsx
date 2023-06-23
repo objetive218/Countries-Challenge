@@ -7,7 +7,7 @@ import AppStyle from "./css/App.module.css";
 
 const App = () => {
   const [paises, setPaises] = useState([]);
-  const { content } = useContext(CountryContext);
+  const { content, one } = useContext(CountryContext);
   const { region, global } = useContext(RegionContext);
 
   const dates = () => {
@@ -51,25 +51,29 @@ const App = () => {
     dates();
   }, [region]);
 
+  const countSet = function(){
+    if(content == null || String(content).length < 3){
+      return paises.map(function (element, index) {
+        if (index < 60) {
+          return <Countries key={index} countrySel={element} />;
+        }
+      })
+    }else{
+      return <Countries
+      countrySel={global.find(function (pais) {
+        return String(pais)
+          .toLowerCase()
+          .includes(String(content).toLowerCase());
+      })}
+    />
+    }
+  }
+
   return (
     <>
       <Header />
       <section className={AppStyle.countries}>
-        {content == null || String(content).length < 3 ? (
-          paises.map(function (element, index) {
-            if (index < 60) {
-              return <Countries key={index} countrySel={element} />;
-            }
-          })
-        ) : (
-          <Countries
-            countrySel={global.find(function (pais) {
-              return String(pais)
-                .toLowerCase()
-                .includes(String(content).toLowerCase());
-            })}
-          />
-        )}
+        {one === null ? countSet() : <Countries key={one.name} countrySel={one} />}
       </section>
     </>
   );
