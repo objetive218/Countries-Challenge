@@ -1,9 +1,12 @@
-import { createContext, useState , useEffect} from "react";
+import { createContext, useState, useEffect, useContext } from "react";
+import CountryContext from "./CountryContext";
 
 const RegionContext = createContext("");
-const RegionProvider = function({children}){
-  const [region, setRegion] = useState("");  
+const RegionProvider = function ({ children }) {
+  const [region, setRegion] = useState("");
   const [global, setGlobal] = useState([]);
+  const {one} = useContext(CountryContext)
+
   const globalDate = () =>
     fetch(`https://restcountries.com/v3.1/all`)
       .then((res) => {
@@ -18,15 +21,19 @@ const RegionProvider = function({children}){
             return countrySel.name.common;
           })
         )
-      ).catch((error) => 
-        console.log(error)
-      );
+      )
+      .catch((error) => console.log(error));
 
-      useEffect(()=>{
-        globalDate()
-      },[])
+  useEffect(() => {
+    globalDate();
+  }, [one, region]);
+  
 
-  return <RegionContext.Provider value={{region,setRegion, global }}>{children}</RegionContext.Provider>
-}
-export {RegionProvider}
+  return (
+    <RegionContext.Provider value={{ region, setRegion, global }}>
+      {children}
+    </RegionContext.Provider>
+  );
+};
+export { RegionProvider };
 export default RegionContext;
