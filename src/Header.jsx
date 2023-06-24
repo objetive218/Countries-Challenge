@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import CountryContext from "./context/CountryContext";
 import RegionContext from "./context/RegionContext";
 import HeaderStyle from "./css/Header.module.css";
-import { BsSearch, BsFillMoonFill } from "react-icons/bs";
+import { BsSearch, BsFillMoonFill, BsArrowLeftShort } from "react-icons/bs";
 import ThemeContext from "./context/ThemeContext";
 
 const Header = () => {
@@ -31,7 +31,7 @@ const Header = () => {
           <h4>Dark Mode</h4>
         </form>
       </section>
-      <section className={HeaderStyle.bar}>
+      {one === null ? <section className={HeaderStyle.bar}>
         <section className={HeaderStyle.box}>
           <form className={HeaderStyle.search}>
             <BsSearch />
@@ -54,7 +54,12 @@ const Header = () => {
             <option value="Oceania" className={HeaderStyle.option}>Oceania</option>
           </select>
         </label>
-      </section>
+      </section>: <section className={HeaderStyle.back}>
+        <form action="" onClick={() => setOne(null)} className={HeaderStyle.themeBack}>
+          <BsArrowLeftShort/>
+          <h4>Back</h4>
+        </form>
+      </section> }
     </>
   );
 };
