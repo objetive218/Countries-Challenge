@@ -18,7 +18,68 @@
     res.map(function (countrySel) {
       return countrySel.name.common;
     })
-  )).catch(error => {console.log(error)})*/
+  )).catch(error => {console.log(error)})
+  const dates = () => {
+    region != ""
+      ? fetch(`https://restcountries.com/v3.1/region/${region}`)
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            }
+            throw new Error("Something went wrong");
+          })
+          .then((res) =>
+            setPaises(
+              res.map(function (countrySel) {
+                return countrySel.name.common;
+              })
+            )
+          )
+          .catch((error) => {
+            console.log(error);
+          })
+      : fetch(`https://restcountries.com/v3.1/all`)
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            }
+            throw new Error("Something went wrong");
+          })
+          .then((json) =>
+            setPaises(
+              json.map(function (countrySel) {
+                return countrySel.name.common;
+              })
+            )
+          )
+          .catch((error) => {
+            console.log(error);
+          });
+  };
+
+  const dates = () => {
+     fetch(`https://restcountries.com/v3.1/region/${region}`)
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            }
+            throw new Error("Something went wrong");
+          })
+          .then((res) =>
+            setPaises(
+              res.map(function (countrySel) {
+                return countrySel.name.common;
+              })
+            )
+          )
+          .catch((error) => {
+            console.log(error);
+          })
+  };
+  useEffect(() => {
+    dates()
+  }, [region])
+  */
 .light-mode {
   --Background: hsl(0, 0%, 98%);
   --elements: hsl(0, 0%, 100%);
