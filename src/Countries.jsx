@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import CountryContext from "./context/CountryContext";
 import counStyle from "./css/Countries.module.css";
 
