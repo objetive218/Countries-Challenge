@@ -4,6 +4,7 @@ import Countries from "./Countries";
 import RegionContext from "./context/RegionContext";
 import CountryContext from "./context/CountryContext";
 import AppStyle from "./css/App.module.css";
+import CountryExtend from "./CountryExtend"
 
 const App = () => {
   const [paises, setPaises] = useState([]);
@@ -49,7 +50,7 @@ const App = () => {
   };
   useEffect(() => {
     dates();
-  }, [region,one]);
+  }, [region]);
 
   const countSet = function(){
     if(content == null || String(content).length < 3){
@@ -73,7 +74,7 @@ const App = () => {
     <>
       <Header />
       <section className={AppStyle.countries}>
-        {one === null ? countSet() : <Countries key={one.name} countrySel={one} />}
+        {one === null ? countSet() : <CountryExtend countrySel={one} />}
       </section>
     </>
   );
