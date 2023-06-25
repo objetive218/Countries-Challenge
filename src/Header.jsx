@@ -18,9 +18,9 @@ const Header = () => {
     e.preventDefault();
     setContent(e.target.value);
   };
-  useEffect(()=>{
+  useEffect(() => {
     setRegion("");
-  },[one]);
+  }, [one]);
 
   return (
     <>
@@ -31,35 +31,58 @@ const Header = () => {
           <h4>Dark Mode</h4>
         </form>
       </section>
-      {one === null ? <section className={HeaderStyle.bar}>
-        <section className={HeaderStyle.box}>
-          <form className={HeaderStyle.search}>
-            <BsSearch />
-            <input
-              type="text"
-              placeholder="Search for a country"
-              onChange={search}
-            />
+      {one === null ? (
+        <section className={HeaderStyle.bar}>
+          <section className={HeaderStyle.box}>
+            <form className={HeaderStyle.search}>
+              <BsSearch />
+              <input
+                type="text"
+                placeholder="Search for a country"
+                onChange={search}
+              />
+            </form>
+          </section>
+          <label htmlFor="" className={HeaderStyle.region}>
+            <select
+              name="region"
+              id="selregion"
+              onChange={search1}
+              className={HeaderStyle.selregion}
+            >
+              <option value="" defaultValue hidden>
+                Filter by Region
+              </option>
+              <option value="Africa" className={HeaderStyle.option}>
+                Africa
+              </option>
+              <option value="America" className={HeaderStyle.option}>
+                America
+              </option>
+              <option value="Asia" className={HeaderStyle.option}>
+                Asia
+              </option>
+              <option value="Europ" className={HeaderStyle.option}>
+                Europa
+              </option>
+              <option value="Oceania" className={HeaderStyle.option}>
+                Oceania
+              </option>
+            </select>
+          </label>
+        </section>
+      ) : (
+        <section className={HeaderStyle.back}>
+          <form
+            action=""
+            onClick={() => setOne(null)}
+            className={HeaderStyle.themeBack}
+          >
+            <BsArrowLeftShort />
+            <h4>Back</h4>
           </form>
         </section>
-        <label htmlFor="" className={HeaderStyle.region}>
-          <select name="region" id="selregion" onChange={search1} className={HeaderStyle.selregion}>
-            <option value="" defaultValue hidden>
-              Filter by Region
-            </option>
-            <option value="Africa" className={HeaderStyle.option}>Africa</option>
-            <option value="America" className={HeaderStyle.option}>America</option>
-            <option value="Asia" className={HeaderStyle.option}>Asia</option>
-            <option value="Europ" className={HeaderStyle.option}>Europa</option>
-            <option value="Oceania" className={HeaderStyle.option}>Oceania</option>
-          </select>
-        </label>
-      </section>: <section className={HeaderStyle.back}>
-        <form action="" onClick={() => setOne(null)} className={HeaderStyle.themeBack}>
-          <BsArrowLeftShort/>
-          <h4>Back</h4>
-        </form>
-      </section> }
+      )}
     </>
   );
 };
