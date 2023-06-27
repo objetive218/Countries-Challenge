@@ -26,15 +26,17 @@ const CountryExtend = ({ countrySel }) => {
 
   const current = (pro, string, bool) => {
     const list = [];
-    if(bool){
-    for (let element in pro) {
-      const item = pro[element].name;
-      list.push(`${string} ${item} `);
-    }}else{
+    if (bool) {
+      for (let element in pro) {
+        const item = pro[element].name;
+        list.push(`${string} ${item} `);
+      }
+    } else {
       for (let element in pro) {
         const item = pro[element];
         list.push(`${string} ${item} `);
-    }}
+      }
+    }
     return list;
   };
   const cur = current(extended?.currencies, "Current: ", true);
@@ -59,9 +61,6 @@ const CountryExtend = ({ countrySel }) => {
               return e;
             })}
           </p>
-          {/*<p>Languages: {Object.keys().forEach(element,index,arr => {
-            element
-          })}</p>*/}
           <p>Border Countries: {border}</p>
         </section>
       </article>
