@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import CountryContext from "./context/CountryContext";
 import RegionContext from "./context/RegionContext";
+import ExtendStyle from "./css/CountryExtend.module.css"
 
 const CountryExtend = ({ countrySel }) => {
   const { one, setOne } = useContext(CountryContext);
@@ -41,12 +42,12 @@ const CountryExtend = ({ countrySel }) => {
   };
   const cur = current(extended?.currencies, "Current: ", true);
   const lagu = current(extended?.languages, "Languages: ", false);
-  const border = String(extended?.borders).split(" ");
+  const border = String(extended?.borders).split(``);
   return (
     <>
-      <article>
-        <picture>
-          <img src={extended?.flags?.svg} alt="flag" />
+      <article className={ExtendStyle.country}>
+        <picture className={ExtendStyle.pic}>
+          <img src={extended?.flags?.svg} alt="flag"  className={ExtendStyle.img}/>
         </picture>
         <section>
           <h2>{countrySel}</h2>
