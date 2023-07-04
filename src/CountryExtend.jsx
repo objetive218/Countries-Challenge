@@ -42,7 +42,9 @@ const CountryExtend = ({ countrySel }) => {
   };
   const cur = current(extended?.currencies, "Current: ", true);
   const lagu = current(extended?.languages, "Languages: ", false);
-  const border = String(extended?.borders).split(``);
+  const border = Array(extended?.borders).find((e)=> {
+    return e === extended?.fifa
+  });
   return (
     <>
       <article className={ExtendStyle.country}>
