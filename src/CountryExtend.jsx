@@ -1,12 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import CountryContext from "./context/CountryContext";
 import RegionContext from "./context/RegionContext";
-import ExtendStyle from "./css/CountryExtend.module.css"
+import ExtendStyle from "./css/CountryExtend.module.css";
 
 const CountryExtend = ({ countrySel }) => {
   const { one, setOne } = useContext(CountryContext);
   const { global } = useContext(RegionContext);
   const [extended, setExtended] = useState([]);
+  const [all, setAll] = useState([]);
+  const test = useRef([]);
 
   const result = () =>
     global.find(function (element) {
@@ -19,6 +21,8 @@ const CountryExtend = ({ countrySel }) => {
       return elemento.name.common == countrySel;
     });
     setExtended(busqueda);
+    setAll(result);
+    test.current = result;
   };
 
   useEffect(() => {
@@ -42,14 +46,32 @@ const CountryExtend = ({ countrySel }) => {
   };
   const cur = current(extended?.currencies, "Current: ", true);
   const lagu = current(extended?.languages, "Languages: ", false);
-  const border = Array(extended?.borders).find((e)=> {
-    return e === extended?.fifa
+
+  {
+    /*  const border = extended?.borders
+  
+  const arr = border.map(element => {
+    return element == all.fifa
+    border?.map((element) => element === test?.fifa)
+  });*/
+  }
+  const border = extended?.borders;
+  const arr = [];
+  const bor = border?.map((e, i) => {
+    String(e);
+    return all?.find((a) => e == a?.fifa)
   });
+
+  console.log(bor);
   return (
     <>
       <article className={ExtendStyle.country}>
         <picture className={ExtendStyle.pic}>
-          <img src={extended?.flags?.svg} alt="flag"  className={ExtendStyle.img}/>
+          <img
+            src={extended?.flags?.svg}
+            alt="flag"
+            className={ExtendStyle.img}
+          />
         </picture>
         <section>
           <h2>{countrySel}</h2>
