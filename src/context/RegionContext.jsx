@@ -7,6 +7,11 @@ const RegionProvider = function ({ children }) {
   const [global, setGlobal] = useState([]);
   const {one} = useContext(CountryContext)
 
+  const changeReg = function (e) {
+    e.preventDefault();
+    setRegion(e.target.value);
+  };
+
   const globalDate = () =>
     fetch(`https://restcountries.com/v3.1/all`)
       .then((res) => {
@@ -30,7 +35,7 @@ const RegionProvider = function ({ children }) {
   
 
   return (
-    <RegionContext.Provider value={{ region, setRegion, global }}>
+    <RegionContext.Provider value={{ region, setRegion, global, changeReg }}>
       {children}
     </RegionContext.Provider>
   );
