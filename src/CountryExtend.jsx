@@ -3,8 +3,8 @@ import CountryContext from "./context/CountryContext";
 import RegionContext from "./context/RegionContext";
 import ExtendStyle from "./css/CountryExtend.module.css";
 
-const CountryExtend = ({ countrySel }) => {
-  const { one, setOne } = useContext(CountryContext);
+const CountryExtend = ({ countrySel, event }) => {
+  const { one, setOne, searchLog  } = useContext(CountryContext);
   const { global } = useContext(RegionContext);
   const [extended, setExtended] = useState([]);
   const [all, setAll] = useState([]);
@@ -33,13 +33,22 @@ const CountryExtend = ({ countrySel }) => {
     const list = [];
     if (bool) {
       for (let element in pro) {
-        const item = pro[element].name;
-        list.push(`${string} ${item} `);
+        if (list.length < 1) {
+          const item = pro[element].name;
+          list.push(`${string} ${item} `);
+        } else {
+          const item = pro[element].name;
+          list.push(", " + item);
+        }
       }
     } else {
       for (let element in pro) {
         const item = pro[element];
-        list.push(`${string} ${item} `);
+        if (list.length < 1) {
+          list.push(`${string} ${item} `);
+        } else {
+          list.push(", " + item);
+        }
       }
     }
     return list;
@@ -47,14 +56,6 @@ const CountryExtend = ({ countrySel }) => {
   const cur = current(extended?.currencies, "Current: ", true);
   const lagu = current(extended?.languages, "Languages: ", false);
 
-  {
-    /*  const border = extended?.borders
-  
-  const arr = border.map(element => {
-    return element == all.fifa
-    border?.map((element) => element === test?.fifa)
-  });*/
-  }
   const border = extended?.borders;
   const bor = border?.map((e, i) => {
     String(e);
@@ -85,6 +86,23 @@ const CountryExtend = ({ countrySel }) => {
               return e;
             })}
           </p>
+          <form className={ExtendStyle.borders}>
+            {bor != null
+              ? bor.map((element, i) => (
+                  <button
+                    key={i}
+                    className={ExtendStyle.bor}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      console.log(e.target.value)
+                      setOne(element.name.common);
+                    }}
+                  >
+                    {element.name.common}
+                  </button>
+                ))
+              : null}
+          </form>
           <p>Border Countries: {border}</p>
         </section>
       </article>
