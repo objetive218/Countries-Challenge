@@ -6,18 +6,10 @@ import { BsSearch, BsFillMoonFill, BsArrowLeftShort } from "react-icons/bs";
 import ThemeContext from "./context/ThemeContext";
 
 const Header = () => {
-  const { setContent, setOne, one } = useContext(CountryContext);
-  const { setRegion } = useContext(RegionContext);
+  const { setContent, setOne, one, searchLog } = useContext(CountryContext);
+  const { setRegion, changeReg } = useContext(RegionContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const [intro, setIntro] = useState(null);
-  const search1 = function (e) {
-    e.preventDefault();
-    setRegion(e.target.value);
-  };
-  const search = function (e) {
-    e.preventDefault();
-    setContent(e.target.value);
-  };
   useEffect(() => {
     setRegion("");
   }, [one]);
@@ -39,7 +31,7 @@ const Header = () => {
               <input
                 type="text"
                 placeholder="Search for a country"
-                onChange={search}
+                onChange={searchLog}
               />
             </form>
           </section>
@@ -47,7 +39,7 @@ const Header = () => {
             <select
               name="region"
               id="selregion"
-              onChange={search1}
+              onChange={changeReg}
               className={HeaderStyle.selregion}
             >
               <option value="" defaultValue hidden>
