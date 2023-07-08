@@ -56,10 +56,9 @@ const CountryExtend = ({ countrySel }) => {
   });*/
   }
   const border = extended?.borders;
-  const arr = [];
   const bor = border?.map((e, i) => {
     String(e);
-    return all?.find((a) => e == a?.fifa)
+    return all?.find((a) => e == a?.cca3);
   });
 
   console.log(bor);
