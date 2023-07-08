@@ -16,3 +16,13 @@
   position: absolute;
   object-fit: contain;
 }
+.borders {
+  display: flex;
+  gap: 1rem;
+}
+.bor{
+  display: flex;
+  flex-direction: row;
+  width: 4rem;
+  height: 2rem;
+}
