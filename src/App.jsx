@@ -4,7 +4,7 @@ import Countries from "./Countries";
 import RegionContext from "./context/RegionContext";
 import CountryContext from "./context/CountryContext";
 import AppStyle from "./css/App.module.css";
-import CountryExtend from "./CountryExtend"
+import CountryExtend from "./CountryExtend";
 
 const App = () => {
   const [paises, setPaises] = useState([]);
@@ -52,23 +52,25 @@ const App = () => {
     dates();
   }, [region]);
 
-  const countSet = function(){
-    if(content == null || String(content).length < 3){
+  const countSet = function () {
+    if (content == null || String(content).length < 3) {
       return paises.map(function (element, index) {
         if (index < 60) {
           return <Countries key={index} countrySel={element} />;
         }
-      })
-    }else{
-      return <Countries
-      countrySel={global.find(function (pais) {
-        return String(pais)
-          .toLowerCase()
-          .includes(String(content).toLowerCase());
-      })}
-    />
+      });
+    } else {
+      return (
+        <Countries
+          countrySel={global.find(function (pais) {
+            return String(pais)
+              .toLowerCase()
+              .includes(String(content).toLowerCase());
+          })}
+        />
+      );
     }
-  }
+  };
 
   return (
     <>
