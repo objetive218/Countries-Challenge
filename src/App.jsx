@@ -12,7 +12,7 @@ const App = () => {
   const { region, global } = useContext(RegionContext);
 
   const dates = () => {
-    region != ""
+    region != "" && region != "Filter by Region"
       ? fetch(`https://restcountries.com/v3.1/region/${region}`)
           .then((res) => {
             if (res.ok) {
