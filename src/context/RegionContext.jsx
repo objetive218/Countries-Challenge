@@ -5,7 +5,7 @@ const RegionContext = createContext("");
 const RegionProvider = function ({ children }) {
   const [region, setRegion] = useState("");
   const [global, setGlobal] = useState([]);
-  const {one} = useContext(CountryContext)
+  const { one } = useContext(CountryContext);
 
   const changeReg = function (e) {
     e.preventDefault();
@@ -32,7 +32,6 @@ const RegionProvider = function ({ children }) {
   useEffect(() => {
     globalDate();
   }, [one, region]);
-  
 
   return (
     <RegionContext.Provider value={{ region, setRegion, global, changeReg }}>
