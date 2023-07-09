@@ -4,7 +4,7 @@ import RegionContext from "./context/RegionContext";
 import ExtendStyle from "./css/CountryExtend.module.css";
 
 const CountryExtend = ({ countrySel, event }) => {
-  const { one, setOne, searchLog  } = useContext(CountryContext);
+  const { one, setOne, searchLog } = useContext(CountryContext);
   const { global } = useContext(RegionContext);
   const [extended, setExtended] = useState([]);
   const [all, setAll] = useState([]);
@@ -86,6 +86,7 @@ const CountryExtend = ({ countrySel, event }) => {
               return e;
             })}
           </p>
+          <p>Border Countries:</p>
           <form className={ExtendStyle.borders}>
             {bor != null
               ? bor.map((element, i) => (
@@ -94,7 +95,7 @@ const CountryExtend = ({ countrySel, event }) => {
                     className={ExtendStyle.bor}
                     onClick={(e) => {
                       e.preventDefault();
-                      console.log(e.target.value)
+                      console.log(e.target.value);
                       setOne(element.name.common);
                     }}
                   >
@@ -103,7 +104,6 @@ const CountryExtend = ({ countrySel, event }) => {
                 ))
               : null}
           </form>
-          <p>Border Countries: {border}</p>
         </section>
       </article>
     </>
