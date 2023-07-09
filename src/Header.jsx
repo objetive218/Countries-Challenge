@@ -9,7 +9,6 @@ const Header = () => {
   const { setContent, setOne, one, searchLog } = useContext(CountryContext);
   const { setRegion, changeReg, region } = useContext(RegionContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const [intro, setIntro] = useState("Filter by Region");
 
   const sel = () => {
     return (
@@ -35,19 +34,19 @@ const Header = () => {
             <option  default hidden>
               Filter by Region
             </option>
-            <option  className={HeaderStyle.option} onChange={() => {setIntro("Africa"); console.log(Africa);}}>
+            <option  className={HeaderStyle.option}>
               Africa
             </option>
-            <option  className={HeaderStyle.option} onSelect={() => setIntro("America")}>
+            <option  className={HeaderStyle.option}>
               America
             </option>
-            <option  className={HeaderStyle.option} onSelect={() => setIntro("Asia")}>
+            <option  className={HeaderStyle.option}>
               Asia
             </option>
-            <option  className={HeaderStyle.option} onSelect={() => setIntro("Europ")}>
+            <option  className={HeaderStyle.option}>
               Europ
             </option>
-            <option className={HeaderStyle.option} onSelect={() => setIntro("Oceania")}>
+            <option className={HeaderStyle.option}>
               Oceania
             </option>
           </select>
@@ -74,7 +73,7 @@ const Header = () => {
 
   useEffect(() => {
     allSeccion();
-  }, [one, intro]);
+  }, [one]);
 
   return (
     <>
