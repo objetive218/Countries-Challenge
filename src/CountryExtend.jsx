@@ -4,7 +4,7 @@ import RegionContext from "./context/RegionContext";
 import ExtendStyle from "./css/CountryExtend.module.css";
 
 const CountryExtend = ({ countrySel, event }) => {
-  const { setOne} = useContext(CountryContext);
+  const { setOne } = useContext(CountryContext);
   const { global } = useContext(RegionContext);
   const [extended, setExtended] = useState([]);
   const [all, setAll] = useState([]);
@@ -62,7 +62,6 @@ const CountryExtend = ({ countrySel, event }) => {
     return all?.find((a) => e == a?.cca3);
   });
 
-  console.log(bor);
   return (
     <>
       <article className={ExtendStyle.country}>
