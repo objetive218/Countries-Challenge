@@ -7,74 +7,92 @@ import ThemeContext from "./context/ThemeContext";
 
 const Header = () => {
   const { setContent, setOne, one, searchLog } = useContext(CountryContext);
-  const { setRegion, changeReg } = useContext(RegionContext);
+  const { setRegion, changeReg, region } = useContext(RegionContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const [intro, setIntro] = useState(null);
+  const [intro, setIntro] = useState("Filter by Region");
+
+  const sel = () => {
+    return (
+      <section className={HeaderStyle.bar}>
+        <section className={HeaderStyle.box}>
+          <form className={HeaderStyle.search}>
+            <BsSearch />
+            <input
+              type="text"
+              placeholder="Search for a country"
+              onChange={searchLog}
+            />
+          </form>
+        </section>
+        <label htmlFor="" className={HeaderStyle.region}>
+          <select
+            name="region"
+            id="selregion"
+            onChange={changeReg}
+            className={HeaderStyle.selregion}
+            value={region}
+          >
+            <option  default hidden>
+              Filter by Region
+            </option>
+            <option  className={HeaderStyle.option} onChange={() => {setIntro("Africa"); console.log(Africa);}}>
+              Africa
+            </option>
+            <option  className={HeaderStyle.option} onSelect={() => setIntro("America")}>
+              America
+            </option>
+            <option  className={HeaderStyle.option} onSelect={() => setIntro("Asia")}>
+              Asia
+            </option>
+            <option  className={HeaderStyle.option} onSelect={() => setIntro("Europ")}>
+              Europ
+            </option>
+            <option className={HeaderStyle.option} onSelect={() => setIntro("Oceania")}>
+              Oceania
+            </option>
+          </select>
+        </label>
+      </section>
+    );
+  };
+  const allSeccion = () => {
+    return one === null ? (
+      sel()
+    ) : (
+      <section className={HeaderStyle.back}>
+        <form
+          action=""
+          onClick={() => setOne(null)}
+          className={HeaderStyle.themeBack}
+        >
+          <BsArrowLeftShort />
+          <h4>Back</h4>
+        </form>
+      </section>
+    );
+  };
+
   useEffect(() => {
-    setRegion("");
-  }, [one]);
+    allSeccion();
+  }, [one, intro]);
 
   return (
     <>
       <section className={HeaderStyle.head}>
-        <h2 onClick={() => setOne(null)}>Where in the world?</h2>
+        <h2
+          onClick={() => {
+            setOne(null);
+            setRegion("");
+          }}
+        >
+          Where in the world?
+        </h2>
         <form action="#" className={HeaderStyle.theme} onClick={toggleTheme}>
           <BsFillMoonFill />
           <h4>Dark Mode</h4>
         </form>
       </section>
-      {one === null ? (
-        <section className={HeaderStyle.bar}>
-          <section className={HeaderStyle.box}>
-            <form className={HeaderStyle.search}>
-              <BsSearch />
-              <input
-                type="text"
-                placeholder="Search for a country"
-                onChange={searchLog}
-              />
-            </form>
-          </section>
-          <label htmlFor="" className={HeaderStyle.region}>
-            <select
-              name="region"
-              id="selregion"
-              onChange={changeReg}
-              className={HeaderStyle.selregion}
-            >
-              <option value="" defaultValue hidden>
-                Filter by Region
-              </option>
-              <option value="Africa" className={HeaderStyle.option}>
-                Africa
-              </option>
-              <option value="America" className={HeaderStyle.option}>
-                America
-              </option>
-              <option value="Asia" className={HeaderStyle.option}>
-                Asia
-              </option>
-              <option value="Europ" className={HeaderStyle.option}>
-                Europa
-              </option>
-              <option value="Oceania" className={HeaderStyle.option}>
-                Oceania
-              </option>
-            </select>
-          </label>
-        </section>
-      ) : (
-        <section className={HeaderStyle.back}>
-          <form
-            action=""
-            onClick={() => setOne(null)}
-            className={HeaderStyle.themeBack}
-          >
-            <BsArrowLeftShort />
-            <h4>Back</h4>
-          </form>
-        </section>
-      )}
+      {allSeccion()}
     </>
   );
 };
