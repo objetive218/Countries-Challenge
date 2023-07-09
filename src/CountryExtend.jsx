@@ -4,7 +4,7 @@ import RegionContext from "./context/RegionContext";
 import ExtendStyle from "./css/CountryExtend.module.css";
 
 const CountryExtend = ({ countrySel, event }) => {
-  const { one, setOne, searchLog } = useContext(CountryContext);
+  const { setOne} = useContext(CountryContext);
   const { global } = useContext(RegionContext);
   const [extended, setExtended] = useState([]);
   const [all, setAll] = useState([]);
