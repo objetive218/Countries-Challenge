@@ -6,9 +6,9 @@ import { BsSearch, BsFillMoonFill, BsArrowLeftShort } from "react-icons/bs";
 import ThemeContext from "./context/ThemeContext";
 
 const Header = () => {
-  const { setContent, setOne, one, searchLog } = useContext(CountryContext);
+  const { setOne, one, searchLog } = useContext(CountryContext);
   const { setRegion, changeReg, region } = useContext(RegionContext);
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { toggleTheme } = useContext(ThemeContext);
 
   const sel = () => {
     return (
