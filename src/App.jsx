@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "./Header";
 import Countries from "./Countries";
 import RegionContext from "./context/RegionContext";
