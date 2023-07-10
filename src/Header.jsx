@@ -31,24 +31,14 @@ const Header = () => {
             className={HeaderStyle.selregion}
             value={region}
           >
-            <option  default hidden>
+            <option default hidden>
               Filter by Region
             </option>
-            <option  className={HeaderStyle.option}>
-              Africa
-            </option>
-            <option  className={HeaderStyle.option}>
-              America
-            </option>
-            <option  className={HeaderStyle.option}>
-              Asia
-            </option>
-            <option  className={HeaderStyle.option}>
-              Europ
-            </option>
-            <option className={HeaderStyle.option}>
-              Oceania
-            </option>
+            <option className={HeaderStyle.option}>Africa</option>
+            <option className={HeaderStyle.option}>America</option>
+            <option className={HeaderStyle.option}>Asia</option>
+            <option className={HeaderStyle.option}>Europ</option>
+            <option className={HeaderStyle.option}>Oceania</option>
           </select>
         </label>
       </section>
