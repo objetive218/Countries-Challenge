@@ -27,7 +27,9 @@
   height: 3rem;
   margin: 3rem;
   border: solid, var(--elements);
-  box-shadow: 0rem 0rem 0.1rem 0.2rem var(--elements);
+  border-radius: 0.3rem;
+  box-shadow: var(--input) 0px 0px 6px -2px,
+  var(--input) 0px 18px 0px -18px;
 }
 .themeBack{
   color: var(--font-color);

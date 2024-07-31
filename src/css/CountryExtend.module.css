@@ -40,13 +40,11 @@
 }
 .pic {
   width: 50vw;
-  height: 46vh;
-  position: relative;
+  height: 50vh;
+  padding: 0rem 5rem;
 }
 .img {
-  width: 100%;
-  height: 46vh;
-  object-fit: contain;
+  aspect-ratio: 5 / 3;
 }
 
 .bor{
@@ -60,9 +58,9 @@
   color: var(--font-color);
   border: solid 1px var(--element);
   box-shadow: var(--input) 0px 0px 6px -2px,
-    var(--input) 0px 18px 0px -18px;
-    justify-content: center;
-    align-items: center;
+  var(--input) 0px 18px 0px -18px;
+  justify-content: center;
+  align-items: center;
 }
 .bor span{
   text-overflow: ellipsis;
