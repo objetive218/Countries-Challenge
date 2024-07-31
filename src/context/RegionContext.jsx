@@ -12,6 +12,23 @@ const RegionProvider = function ({ children }) {
     setRegion(e.target.value);
   };
 
+  const countryFetch = async(region) => {
+    fetch(`https://restcountries.com/v3.1/all`)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error("Something went wrong");
+      })
+      .then((json) =>
+        setGlobal(
+          json.map(function (countrySel) {
+            return countrySel.name.common;
+          })
+        )
+      )
+      .catch((error) => console.log(error));
+  }
   const globalDate = () =>
     fetch(`https://restcountries.com/v3.1/all`)
       .then((res) => {

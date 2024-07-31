@@ -1,7 +1,8 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState, useMemo } from "react";
 import CountryContext from "./context/CountryContext";
 import RegionContext from "./context/RegionContext";
 import ExtendStyle from "./css/CountryExtend.module.css";
+import { searchCountries } from "./services/restcountries";
 
 const CountryExtend = ({ countrySel, event }) => {
   const { setOne } = useContext(CountryContext);
@@ -10,15 +11,18 @@ const CountryExtend = ({ countrySel, event }) => {
   const [all, setAll] = useState([]);
   const test = useRef([]);
 
-  const result = () =>
-    global.find(function (element) {
+  
+  const firtsCharge = async() =>{
+    /*global.find(function (element) {
       return element.name === countrySel;
-    });
+    });*/
+    let result = await searchCountries();
+  };
+    
   const allCoun = async function () {
-    let consult = await fetch(`https://restcountries.com/v3.1/all`);
-    let result = await consult.json();
+    let result = await searchCountries();
     const busqueda = result.find(function (elemento) {
-      return elemento.name.common == countrySel;
+      return elemento.name == countrySel;
     });
     setExtended(busqueda);
     setAll(result);
@@ -35,7 +39,7 @@ const CountryExtend = ({ countrySel, event }) => {
       for (let element in pro) {
         if (list.length < 1) {
           const item = pro[element].name;
-          list.push(`${string} ${item} `);
+          list.push(`${item}`);
         } else {
           const item = pro[element].name;
           list.push(", " + item);
@@ -45,7 +49,7 @@ const CountryExtend = ({ countrySel, event }) => {
       for (let element in pro) {
         const item = pro[element];
         if (list.length < 1) {
-          list.push(`${string} ${item} `);
+          list.push(`${item} `);
         } else {
           list.push(", " + item);
         }
@@ -53,40 +57,52 @@ const CountryExtend = ({ countrySel, event }) => {
     }
     return list;
   };
-  const cur = current(extended?.currencies, "Current: ", true);
+  
+  const nativeN = (native) => {
+    const list = [];
+    for(let element in native){
+        const item = native[element].official;
+        list.push(item)}
+        return list
+    }
+  const cur = current(extended?.currencies,"Current: ", true);
   const lagu = current(extended?.languages, "Languages: ", false);
+  const native = nativeN(extended?.nativeName);
 
   const border = extended?.borders;
   const bor = border?.map((e, i) => {
     String(e);
     return all?.find((a) => e == a?.cca3);
   });
-
+ 
+  
+  console.log(native)
   return (
     <>
       <article className={ExtendStyle.country}>
         <picture className={ExtendStyle.pic}>
           <img
-            src={extended?.flags?.svg}
+            src={extended?.flags}
             alt="flag"
             className={ExtendStyle.img}
           />
         </picture>
-        <section>
+        <section className={ExtendStyle.information}>
           <h2>{countrySel}</h2>
-          <p>Population: {extended?.population}</p>
-          <p>Region: {extended?.region}</p>
-          <p>Sub Region: {extended?.subregion}</p>
-          <p>Capital: {extended?.capital ? extended?.capital : countrySel}</p>
-          <p>Top Level Domain: {extended?.tld}</p>
-          <p>{cur}</p>
-          <p>
+          <p><b>Native Name:</b> {native[0]} </p>
+          <p><b>Population:</b> {extended?.population}</p>
+          <p><b>Region:</b>  {extended?.region}</p>
+          <p><b>Sub Region:</b>  {extended?.subregion}</p>
+          <p><b>Capital:</b>  {extended?.capital ? extended?.capital : countrySel}</p>
+          <p><b>Top Level Domain:</b>  {extended?.tld}</p>
+          <p><b>Current:</b> {cur}</p>
+          <p><b>Languages: </b>
             {lagu.map((e) => {
               return e;
             })}
           </p>
-          <p>Border Countries:</p>
-          <form className={ExtendStyle.borders}>
+          <section className={ExtendStyle.borders}>
+          <p><b>Border Countries:</b></p>
             {bor != null
               ? bor.map((element, i) => (
                   <button
@@ -94,15 +110,16 @@ const CountryExtend = ({ countrySel, event }) => {
                     className={ExtendStyle.bor}
                     onClick={(e) => {
                       e.preventDefault();
-                      console.log(e.target.value);
-                      setOne(element.name.common);
+                      setOne(element.name);
                     }}
                   >
-                    {element.name.common}
+                    <span>
+                    {element.name}
+                    </span>
                   </button>
                 ))
-              : null}
-          </form>
+              : <p>N/A</p>}
+          </section>
         </section>
       </article>
     </>

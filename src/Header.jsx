@@ -6,17 +6,23 @@ import { BsSearch, BsFillMoonFill, BsArrowLeftShort } from "react-icons/bs";
 import ThemeContext from "./context/ThemeContext";
 
 const Header = () => {
-  const { setOne, one, searchLog } = useContext(CountryContext);
+  const { setOne, one, searchLog, handleSubmit, setContent } = useContext(CountryContext);
   const { setRegion, changeReg, region } = useContext(RegionContext);
   const { toggleTheme } = useContext(ThemeContext);
+  
+
+  const selectRegion = async() => {
+    /*call searchRegion a save in a state */
+  }
 
   const sel = () => {
     return (
       <section className={HeaderStyle.bar}>
         <section className={HeaderStyle.box}>
-          <form className={HeaderStyle.search}>
+          <form className={HeaderStyle.search} onSubmit={handleSubmit}>
             <BsSearch />
             <input
+              name="count"
               type="text"
               placeholder="Search for a country"
               onChange={searchLog}
@@ -72,6 +78,7 @@ const Header = () => {
           onClick={() => {
             setOne(null);
             setRegion("");
+            setContent(null)
           }}
         >
           Where in the world?

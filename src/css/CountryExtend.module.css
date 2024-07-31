@@ -1,9 +1,10 @@
 .country {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 7rem;
-  margin-right: 8rem;
+  box-sizing: border-box;
+  width: 100vw;
 }
 .pic {
   width: 55vw;
@@ -16,6 +17,10 @@
   position: absolute;
   object-fit: contain;
 }
+.information{
+  padding-right: 3rem;
+  
+}
 .borders {
   display: flex;
   gap: 1rem;
@@ -25,4 +30,12 @@
   flex-direction: row;
   width: 4rem;
   height: 2rem;
+  align-content: center;
+}
+.bor span{
+  text-overflow: ellipsis;
+  align-items: center;
+  justify-self: center;
+  overflow: hidden;
+    white-space: nowrap;
 }
