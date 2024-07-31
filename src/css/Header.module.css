@@ -23,8 +23,8 @@
 .back{
   display: flex;
   flex-direction: row;
-  width: 9rem;
-  height: 4rem;
+  width: 7rem;
+  height: 3rem;
   margin: 3rem;
   border: solid, var(--elements);
   box-shadow: 0rem 0rem 0.1rem 0.2rem var(--elements);
