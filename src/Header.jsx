@@ -55,14 +55,14 @@ const Header = () => {
       sel()
     ) : (
       <section className={HeaderStyle.back}>
-        <form
+        <div
           action=""
           onClick={() => setOne(null)}
           className={HeaderStyle.themeBack}
         >
-          <BsArrowLeftShort />
-          <h4>Back</h4>
-        </form>
+          <BsArrowLeftShort style={{fontSize:30}} />
+          <h5>Back</h5>
+        </div>
       </section>
     );
   };

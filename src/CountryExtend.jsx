@@ -33,8 +33,37 @@ const CountryExtend = ({ countrySel, event }) => {
     allCoun();
   }, [countrySel]);
 
-  const current = (pro, string, bool) => {
+  const current = (pro, bool) => {
     const list = [];
+    switch (bool) {
+      case true:
+        for (let element in pro) {
+        if (list.length < 1) {
+          const item = pro[element].name;
+          list.push(`${item}`);
+        } else {
+          const item = pro[element].name;
+          list.push(", " + item);
+        }
+      }
+        break;
+      case false:
+        for (let element in pro) {
+        const item = pro[element];
+        if (list.length < 1) {
+          list.push(`${item} `);
+        } else {
+          list.push(", " + item);
+        }
+      }
+      break;
+      case null:
+        for(let element in pro){
+        const item = pro[element].common;
+        list.push(item)}
+        break;
+    }
+    /*
     if (bool) {
       for (let element in pro) {
         if (list.length < 1) {
@@ -55,19 +84,13 @@ const CountryExtend = ({ countrySel, event }) => {
         }
       }
     }
+      */
     return list;
   };
   
-  const nativeN = (native) => {
-    const list = [];
-    for(let element in native){
-        const item = native[element].official;
-        list.push(item)}
-        return list
-    }
-  const cur = current(extended?.currencies,"Current: ", true);
-  const lagu = current(extended?.languages, "Languages: ", false);
-  const native = nativeN(extended?.nativeName);
+  const cur = current(extended?.currencies, true);
+  const lagu = current(extended?.languages, false);
+  const native = current(extended?.nativeName, null);
 
   const border = extended?.borders;
   const bor = border?.map((e, i) => {
@@ -89,11 +112,14 @@ const CountryExtend = ({ countrySel, event }) => {
         </picture>
         <section className={ExtendStyle.information}>
           <h2>{countrySel}</h2>
-          <p><b>Native Name:</b> {native[0]} </p>
+          <section className={ExtendStyle.sideone}>
+          <p><b>Native Name:</b> {native[native.length -1]} </p>
           <p><b>Population:</b> {extended?.population}</p>
           <p><b>Region:</b>  {extended?.region}</p>
           <p><b>Sub Region:</b>  {extended?.subregion}</p>
           <p><b>Capital:</b>  {extended?.capital ? extended?.capital : countrySel}</p>
+          </section>
+          <section className={ExtendStyle.sidetwo}>
           <p><b>Top Level Domain:</b>  {extended?.tld}</p>
           <p><b>Current:</b> {cur}</p>
           <p><b>Languages: </b>
@@ -101,6 +127,8 @@ const CountryExtend = ({ countrySel, event }) => {
               return e;
             })}
           </p>
+          </section>
+
           <section className={ExtendStyle.borders}>
           <p><b>Border Countries:</b></p>
             {bor != null
