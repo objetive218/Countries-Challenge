@@ -3,7 +3,6 @@ import { createContext, useState } from "react";
 const CountryContext = createContext(null);
 const CountryProvider = function ({ children }) {
   const [content, setContent] = useState(null);
-  const [one, setOne] = useState(null);
   const handleSubmit = (e) => {
     e.preventDefault()
     const {fields} = new window.FormData(e.target)
@@ -15,7 +14,7 @@ const CountryProvider = function ({ children }) {
   };
 
   return (
-    <CountryContext.Provider value={{ content, setContent, one, setOne, searchLog, handleSubmit }}>
+    <CountryContext.Provider value={{ content, setContent, searchLog, handleSubmit }}>
       {children}
     </CountryContext.Provider>
   );

@@ -1,38 +1,29 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { searchCountries, searchRegion } from "../services/restcountries";
 import RegionContext from "../context/RegionContext";
 
-export function useCountries() {
-  const [countries, setCountries] = useState([]);
-  const [regcount, setRegcount] = useState([]);
+export function useCountries(country, reg) {
+  const [countries, setCountries] = useState([]); 
   const { region } = useContext(RegionContext);
-  const getCountries = async () => {
-    if (region != "" && region != "Filter by Region") {
-      try {
+ 
+  const getAllCountries = async () => {
+    if(region != "" && region != "Filter by Region"){
+      try{
         const newRegion = await searchRegion(region);
-        setRegcount(
-          newRegion.map(function (countrySel) {
-            return countrySel.name;
-          })
-        );
-      } catch (e) {
-        console.log(e);
+        setCountries(newRegion);
+      }catch(e){
+        console.log(e)
       }
-    } else {
-      try {
-        const allCountries = await searchCountries();
-        setRegcount(
-          allCountries.map(function (countrySel) {
-            return countrySel.name;
-          })
-        );
-      } catch (e) {
+    }else{
+      try{
+        const newCountries = await searchCountries();
+        setCountries(newCountries);
+      } catch (e){
         console.log(e);
       }
     }
-  };
-  useEffect(() => {
-    getCountries();
-  }, [region]);
-  return { selector: getCountries, regcount };
 }
+
+  return { getAllCountries, countries };
+}
+

@@ -8,36 +8,45 @@ import CountryExtend from "./CountryExtend";
 import { useCountries } from "./hooks/useCountries";
 
 const App = () => {
-  const [paises, setPaises] = useState([]);
-  const { content, one } = useContext(CountryContext);
-  const { region, global } = useContext(RegionContext);
-  const { selector, getCountries, regcount } = useCountries();
+  const { content } = useContext(CountryContext);
+  const { region } = useContext(RegionContext);
+  const [selectName, setSelectName]= useState(null);
+  const { getAllCountries, countries } = useCountries();
 
-  const countSet = function () {
+  useEffect(() => {
+    getAllCountries();
+  },[region])
+
+  const handleSelectName = (value) => {
+    setSelectName(value);
+  }
+
+  const allCountSet = () => {
     if (content == null || String(content).length < 3) {
-      return regcount?.map(function (element, index) {
+      return countries?.map(function (element, index) {
         if (index < 60) {
-          return <Countries key={index} countrySel={element} />;
+          return <Countries handle={handleSelectName} key={index} countrySel={element}/>;
         }
       });
     } else {
       return (
         <Countries
-          countrySel={regcount.find(function (pais) {
-            return String(pais)
+          handle={handleSelectName}
+          countrySel={countries?.find(function (country) {
+            return String(country?.name)
               .toLowerCase()
               .includes(String(content).toLowerCase());
           })}
         />
       );
     }
-  };
+  }
 
   return (
     <>
-      <Header />
+      <Header handle={handleSelectName} nameSelected={selectName} />
       <section className={AppStyle.countries}>
-        {one === null ? countSet() : <CountryExtend countrySel={one} />}
+        {selectName === null ? allCountSet() : <CountryExtend countrySel={selectName} handle={handleSelectName}  allCount ={countries}/>}
       </section>
     </>
   );

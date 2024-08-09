@@ -3,7 +3,7 @@ export const searchCountries = async () => {
     const result = await fetch(`https://restcountries.com/v3.1/all`);
     const countriesList = await result.json();
 
-    return await countriesList?.map((country) => ({
+    return countriesList?.map((country) => ({
       flags: country?.flags?.svg,
       name: country?.name?.common,
       population: country?.population,
@@ -27,7 +27,7 @@ export const searchRegion = async (R) => {
     const result = await fetch(`https://restcountries.com/v3.1/region/${R}`);
     const regionList = await result.json();
 
-    return await regionList?.map((country) => ({
+    return regionList?.map((country) => ({
       flags: country.flags?.svg,
       name: country.name?.common,
       population: country.population,
@@ -38,6 +38,7 @@ export const searchRegion = async (R) => {
       currencies: country.currencies,
       languages: country.languages,
       borders: country.borders,
+      cca3: country.cca3,
       nativeName: country?.name?.nativeName,
     }));
   } catch (e) {

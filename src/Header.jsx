@@ -5,15 +5,11 @@ import HeaderStyle from "./css/Header.module.css";
 import { BsSearch, BsFillMoonFill, BsArrowLeftShort } from "react-icons/bs";
 import ThemeContext from "./context/ThemeContext";
 
-const Header = () => {
-  const { setOne, one, searchLog, handleSubmit, setContent } = useContext(CountryContext);
+const Header = ({handle,nameSelected}) => {
+  const { searchLog, handleSubmit, setContent } = useContext(CountryContext);
   const { setRegion, changeReg, region } = useContext(RegionContext);
   const { toggleTheme } = useContext(ThemeContext);
   
-
-  const selectRegion = async() => {
-    /*call searchRegion a save in a state */
-  }
 
   const sel = () => {
     return (
@@ -51,13 +47,13 @@ const Header = () => {
     );
   };
   const allSeccion = () => {
-    return one === null ? (
+    return nameSelected === null ? (
       sel()
     ) : (
       <section className={HeaderStyle.back}>
         <div
           action=""
-          onClick={() => setOne(null)}
+          onClick={(e) => handle(null)}
           className={HeaderStyle.themeBack}
         >
           <BsArrowLeftShort style={{fontSize:30}} />
@@ -69,14 +65,14 @@ const Header = () => {
 
   useEffect(() => {
     allSeccion();
-  }, [one]);
+  }, [nameSelected]);
 
   return (
     <>
       <section className={HeaderStyle.head}>
         <h2
-          onClick={() => {
-            setOne(null);
+          onClick={(e) => {
+            handle(null);
             setRegion("");
             setContent(null)
           }}
